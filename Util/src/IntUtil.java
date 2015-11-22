@@ -7,11 +7,11 @@ public final class IntUtil {
     /**
      * изменение размера массива
      */
-    public static int[] resize(int[] a, int newLength){
+    public static int[] resize(int[] arrayToResize, int newLength){
         int[] res =new int[newLength];
-        int min = Math.min(a.length,newLength);
+        int min = Math.min(arrayToResize.length,newLength);
         for (int j=0;j<min;j++)
-            res[j] = a[j];
+            res[j] = arrayToResize[j];
         if (min < newLength) {
             for (int j = min; j < newLength; j++) {
                 res[j] = 0;
@@ -43,11 +43,11 @@ public final class IntUtil {
     /**
      * сравнение двух массивов без учета порядка
      */
-    public static boolean compare(int []a, int[]b){
-        if(a.length == b.length) {
-            for (int i = 0; i < a.length; i++) {
-                int count1 = countElems(a, a[i]);
-                int count2 = countElems(b, b[i]);
+    public static boolean compare(int []firstArray, int[]secondArray){
+        if(firstArray.length == secondArray.length) {
+            for (int index = 0; index < firstArray.length; index++) {
+                int count1 = countElems(firstArray, firstArray[index]);
+                int count2 = countElems(secondArray, secondArray[index]);
                 if (count1 != count2) {
                     return false;
                 }
@@ -64,11 +64,11 @@ public final class IntUtil {
      */
     static int[] shuffleArray(int[] array) {
         Random rnd = new Random();
-        for (int i = array.length - 1; i > 0; i--) {
-            int swapIndex = rnd.nextInt(i + 1);
-            int a = array[swapIndex];
-            array[swapIndex] = array[i];
-            array[i] = a;
+        for (int index = array.length - 1; index > 0; index--) {
+            int swapIndex = rnd.nextInt(index + 1);
+            int temp = array[swapIndex];
+            array[swapIndex] = array[index];
+            array[index] = temp;
         }
         return array;
     }
@@ -76,10 +76,10 @@ public final class IntUtil {
     /**
      * вывод массива
      */
-    public static void print(int []a){
-        for (int i = 0; i< a.length; i++){
+    public static void print(int []arrayToPrint){
+        for (int index = 0; index< arrayToPrint.length; index++){
 
-            System.out.print(a[i]);
+            System.out.print(arrayToPrint[index]);
             System.out.print("\t");
         }
         System.out.println();
