@@ -9,21 +9,18 @@ public final class IntUtil {
      */
     public static int[] resize(int[] a, int newLength){
         int[] res =new int[newLength];
-        int min;
-
-        if(a.length < newLength)
-            min = a.length;
-        else min = newLength;
-
+        int min = Math.min(a.length,newLength);
         for (int j=0;j<min;j++)
             res[j] = a[j];
-        if (min < newLength)
-            for(int j=min;j < newLength;j++)
+        if (min < newLength) {
+            for (int j = min; j < newLength; j++) {
                 res[j] = 0;
+            }
+        }
         return res;
     }
 
-    private static int countElems(int [] array,int elem) {
+    private static int countElems(int [] array, int elem) {
         int count = 0;
         if (array != null) {
             for (int i = 0; i < array.length; i++) {
@@ -47,21 +44,19 @@ public final class IntUtil {
      * сравнение двух массивов без учета порядка
      */
     public static boolean compare(int []a, int[]b){
-        boolean flag = true;
         if(a.length == b.length) {
             for (int i = 0; i < a.length; i++) {
                 int count1 = countElems(a, a[i]);
                 int count2 = countElems(b, b[i]);
                 if (count1 != count2) {
-                    flag = false;
-                    break;
+                    return false;
                 }
             }
         }
         else
-        flag = false;
+            return false;
 
-        return flag;
+        return true;
     }
 
     /**
